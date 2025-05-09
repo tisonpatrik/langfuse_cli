@@ -4,7 +4,11 @@ from langfuse.api.resources.commons.errors.not_found_error import NotFoundError
 
 from langfuse_cli.core.dataset_loader import fetch_dataset
 from langfuse_cli.core.file_writer import save_dataset_config_to_file, save_item_to_file
-from langfuse_cli.models.datasets import DatasetItem, LangfuseDataset
+from langfuse_cli.models.datasets import (
+    DatasetItem,
+    LangfuseDataset,
+    LangfuseDatasetConfig,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +28,10 @@ def export_item(
 def create_dataset_config(dataset: LangfuseDataset) -> None:
     filename = f"{dataset.name}.yaml"
     target_dir = "datasets/configs"
-    success = save_dataset_config_to_file(dataset, filename, target_dir)
+    config = LangfuseDatasetConfig(
+        name=dataset.name, description=dataset.description, metadata=dataset.metadata
+    )
+    success = save_dataset_config_to_file(config, filename, target_dir)
     if not success:
         logger.warning(f"Dataset '{dataset.name}' was not saved.")
 

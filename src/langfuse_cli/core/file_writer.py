@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 
-from langfuse_cli.models.datasets import DatasetItem, LangfuseDataset
+from langfuse_cli.models.datasets import DatasetItem, LangfuseDatasetConfig
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ def save_item_to_file(
 
 
 def save_dataset_config_to_file(
-    dataset: LangfuseDataset, filename: str, output_dir_template: str
+    dataset: LangfuseDatasetConfig, filename: str, output_dir_template: str
 ) -> bool:
     try:
         path = Path(output_dir_template)

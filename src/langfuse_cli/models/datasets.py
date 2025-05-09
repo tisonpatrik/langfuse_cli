@@ -27,3 +27,9 @@ class LangfuseDataset(BaseModel):
     description: str | None
     metadata: DatasetMetadata
     items: list[DatasetItem]
+
+
+class LangfuseDatasetConfig(BaseModel):
+    name: str
+    description: str | None
+    metadata: DatasetMetadata
