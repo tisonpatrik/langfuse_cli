@@ -1,0 +1,28 @@
+[project]
+name = "langfuse-cli"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "tisonpatrik", email = "patriktison@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "langfuse>=2.60.4",
+    "pydantic>=2.11.4",
+]
+
+[project.scripts]
+langfuse-cli = "langfuse_cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
