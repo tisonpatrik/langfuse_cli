@@ -2,7 +2,7 @@ import logging
 
 from langfuse.api.resources.commons.errors.not_found_error import NotFoundError
 
-from langfuse_cli.core.dataset_loader import fetch_dataset
+from langfuse_cli.core.dataset_parser import fetch_dataset
 from langfuse_cli.core.file_writer import save_dataset_config_to_file, save_item_to_file
 from langfuse_cli.models.datasets import (
     DatasetItem,

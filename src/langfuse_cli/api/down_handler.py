@@ -1,7 +1,7 @@
 import logging
 
 from langfuse_cli.client.langfuse_client import get_langfuse_client
-from langfuse_cli.core.generate_service import process_single_dataset
+from langfuse_cli.services.generate_service import process_single_dataset
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ def resolve_dataset_names(langfuse_client) -> list[str]:
     return [ds.name for ds in datasets]
 
 
-def handle_generate_command(args) -> int:
+def handle_generate_command() -> int:
     try:
         langfuse_client = get_langfuse_client()
 

@@ -1,7 +1,7 @@
-import json
 import logging
 from pathlib import Path
 
+import orjson
 import yaml
 
 from langfuse_cli.models.datasets import DatasetItem, LangfuseDatasetConfig
@@ -17,8 +17,15 @@ def save_item_to_file(
         path.mkdir(parents=True, exist_ok=True)
 
         file_path = path / filename
-        with file_path.open("w", encoding="utf-8") as f:
-            json.dump(item.model_dump(), f, indent=2, ensure_ascii=False)
+        json_bytes = orjson.dumps(
+            item.model_dump(),
+            option=orjson.OPT_INDENT_2
+            | orjson.OPT_NON_STR_KEYS
+            | orjson.OPT_SERIALIZE_DATACLASS,
+        )  ##  TODO: no specific reasons, for those options.. validate me pls
+
+        with file_path.open("wb") as f:
+            f.write(json_bytes)
 
         return True
 

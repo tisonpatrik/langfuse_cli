@@ -21,8 +21,8 @@ def run() -> int:
     args = parser.parse_args()
 
     if args.down:
-        return handle_generate_command(args)
+        return handle_generate_command()
     elif args.up:
-        return handle_up_command(args)
+        return handle_up_command()
 
     return 1
