@@ -27,7 +27,7 @@ def handle_generate_command(config: Config) -> int:
 
         for dataset_name in dataset_names:
             dataset = fetch_dataset(dataset_name)
-            validate_dataset(dataset)
+            validate_dataset(dataset_name, dataset)
             # store_dataset(config.datasets_target_dir, langfuse_client, dataset_name)
 
     except Exception:
