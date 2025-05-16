@@ -23,6 +23,6 @@ def upload_dataset(dataset_name: Path) -> None:
             expected_output=item.expected_output,
             metadata=item.workspaces,
         )
-        logger.info(f"✅ Processed item: {item.question}")
+        logger.info(f"Processed item: {item.question}")
 
-    logger.info(f"✅ Processed dataset: {dataset_name}")
+    logger.info(f"Processed dataset: {dataset_name}")
