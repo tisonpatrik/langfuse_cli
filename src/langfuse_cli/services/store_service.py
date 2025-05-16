@@ -1,13 +1,17 @@
 import logging
 
+from langfuse import Langfuse
 from langfuse.api.resources.commons.errors.not_found_error import NotFoundError
 
 from langfuse_cli.core.dataset_parser import fetch_dataset
-from langfuse_cli.core.file_writer import save_dataset_config_to_file, save_item_to_file
-from langfuse_cli.models.datasets import (
+from langfuse_cli.core.models.datasets import (
     DatasetItem,
     LangfuseDataset,
     LangfuseDatasetConfig,
+)
+from langfuse_cli.utils.file_writer import (
+    save_dataset_config_to_file,
+    save_item_to_file,
 )
 
 logger = logging.getLogger(__name__)
@@ -36,7 +40,9 @@ def create_dataset_config(dataset: LangfuseDataset) -> None:
         logger.warning(f"Dataset '{dataset.name}' was not saved.")
 
 
-def process_single_dataset(langfuse_client, dataset_name: str) -> None:
+def store_dataset(
+    datasets_target_dir: str, langfuse_client: Langfuse, dataset_name: str
+) -> None:
     try:
         dataset = fetch_dataset(langfuse_client, dataset_name)
         create_dataset_config(dataset)

@@ -4,7 +4,7 @@ from pathlib import Path
 import orjson
 import yaml
 
-from langfuse_cli.models.datasets import DatasetItem, LangfuseDatasetConfig
+from langfuse_cli.core.models.datasets import DatasetItem, LangfuseDatasetConfig
 
 logger = logging.getLogger(__name__)
 

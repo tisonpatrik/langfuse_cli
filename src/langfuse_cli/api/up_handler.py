@@ -2,7 +2,7 @@ import logging
 import os
 from pathlib import Path
 
-from langfuse_cli.services.create_dataset_service import upload_dataset
+from langfuse_cli.services.upload_service import upload_dataset
 
 logger = logging.getLogger(__name__)
 

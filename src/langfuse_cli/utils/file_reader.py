@@ -3,7 +3,7 @@ from pathlib import Path
 import orjson
 from yaml import safe_load
 
-from langfuse_cli.models.datasets import DatasetItem, LangfuseDatasetConfig
+from langfuse_cli.core.models.datasets import DatasetItem, LangfuseDatasetConfig
 
 
 def get_dataset_config(dataset_name: Path) -> LangfuseDatasetConfig:
@@ -23,3 +23,12 @@ def get_dataset_items(data_dir: Path) -> list[DatasetItem]:
             items.append(DatasetItem(**data))
 
     return items
+
+
+def read_yaml(file_path: str) -> dict:
+    with open(file_path, "r", encoding="utf-8") as f:
+        try:
+            file_content = safe_load(f)
+            return file_content
+        except Exception:
+            raise ValueError(f"Failed to load config from {file_path}")
