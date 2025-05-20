@@ -3,6 +3,9 @@ import shutil
 
 
 def clean_datasets_dir(datasets_target_dir: str) -> None:
+    if not os.path.exists(datasets_target_dir):
+        return
+
     for filename in os.listdir(datasets_target_dir):
         file_path = os.path.join(datasets_target_dir, filename)
         try:
@@ -11,4 +14,4 @@ def clean_datasets_dir(datasets_target_dir: str) -> None:
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
         except Exception as e:
-            print(f"Chyba při mazání {file_path}: {e}")
+            print(f"Error deleting {file_path}: {e}")

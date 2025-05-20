@@ -10,6 +10,10 @@ from langfuse_cli.utils.file_writer import (
 logger = logging.getLogger(__name__)
 
 
+def clean_text(value: str) -> str:
+    return value.replace("\n", " ").strip() if isinstance(value, str) else value
+
+
 def export_item(
     item: dict,
     index: int,
@@ -18,7 +22,16 @@ def export_item(
 ) -> None:
     filename = f"{dataset_name}_{index}.json"
     target_dir = f"{datasets_target_dir}/{dataset_name}"
-    success = save_to_json(item, filename, target_dir)
+    raw = item.__dict__
+
+    export_data = {
+        "id": raw.get("id"),
+        "input": clean_text(raw.get("input", "")),
+        "expected_output": clean_text(raw.get("expected_output", "")),
+        "metadata": raw.get("metadata", {}),
+    }
+
+    success = save_to_json(export_data, filename, target_dir)
     if not success:
         logger.warning(f"Item {index} from dataset '{dataset_name}' was not saved.")
 
