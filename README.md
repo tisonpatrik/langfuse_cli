@@ -2,7 +2,7 @@
 
 uv run langfuse-cli -d
 
-This will download all datasets from langfuse into root/datasts directory.
+This will download all datasets from langfuse into root/datasets directory.
 
 
 ## Up 
