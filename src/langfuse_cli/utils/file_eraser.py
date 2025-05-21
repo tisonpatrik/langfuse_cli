@@ -1,5 +1,10 @@
+"""Utility functions for cleaning dataset directories."""
+
+import logging
 import os
 import shutil
+
+logger = logging.getLogger(__name__)
 
 
 def clean_datasets_dir(datasets_target_dir: str) -> None:
@@ -14,4 +19,4 @@ def clean_datasets_dir(datasets_target_dir: str) -> None:
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
         except Exception as e:
-            print(f"Error deleting {file_path}: {e}")
+            logger.error(f"Error deleting {file_path}: {e}")
